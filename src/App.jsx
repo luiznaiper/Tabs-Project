@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import BtnContainer from './BtnContainer'
 import JobInfo from './JobInfo'
 
 const url = 'https://course-api.com/react-tabs-project'
@@ -6,6 +7,7 @@ const url = 'https://course-api.com/react-tabs-project'
 function App() {
   const [loading, setLoading] = useState(true)
   const [jobs, setJobs] = useState([])
+  const [currentItem, setCurrentItem] = useState(0)
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -31,9 +33,13 @@ function App() {
 
   return (
     <section className="jobs-center">
-      {/* button container */}
+      <BtnContainer
+        jobs={jobs}
+        currentItem={currentItem}
+        setCurrentItem={setCurrentItem}
+      />
       {/* job info */}
-      <JobInfo jobs={jobs} />
+      <JobInfo jobs={jobs} currentItem={currentItem} />
     </section>
   )
 }
